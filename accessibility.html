@@ -14,6 +14,10 @@ body{margin:0;background:#FFFFFF;color:#2B3746;
 font-family:"Segoe UI",-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
 font-size:16px;line-height:1.6}
 a{color:#2F5A94}
+/* a mail address carries no line under it - in the hero's "opening soon" line, in the legal texts and in the
+   footer; the line comes with the pointer or the keyboard (Orly, 20 Nov 2026: "פשוט תוריד את הקו") */
+a[href^="mailto:"]{text-decoration:none;font-weight:600}
+a[href^="mailto:"]:hover,a[href^="mailto:"]:focus-visible{text-decoration:underline}
 .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
 header{border-bottom:1px solid #E2E1E3;background:#FFFFFF;position:sticky;top:0;z-index:5}
 header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:64px;flex-wrap:wrap}
@@ -54,6 +58,15 @@ ul.edge li::before{content:"";position:absolute;left:0;top:.62em;width:9px;heigh
 .plan details summary{cursor:pointer;color:#2F5A94;font-size:15px;font-weight:600}
 .plan details summary:focus-visible{outline:2px solid #0A2555;outline-offset:2px}
 .plan details ul{margin-top:8px}
+/* "Learn more" on one line in the three cards, closed AND open (Orly, 20 Nov 2026): a card is two rows the cards
+   share - what stands above the list, and the list - so a list that opens in one card moves the line in none */
+.plan{display:flex;flex-direction:column}
+.plan details{margin-top:auto;padding-top:10px}
+@supports (grid-template-rows:subgrid){
+.plans{row-gap:0}
+.plan{display:grid;grid-template-rows:subgrid;grid-row:span 2;margin-bottom:20px}
+.plan details{margin-top:0;align-self:start}
+}
 .note{color:#6E7076;font-size:14px;margin-top:14px}
 .scenes h2{margin-bottom:6px} .scenes .sub{color:#6E7076;margin:0 0 10px;font-size:15px}
 .scene{display:grid;grid-template-columns:2fr 3fr;gap:36px;align-items:center;padding:34px 0;border-top:1px solid #E2E1E3}
